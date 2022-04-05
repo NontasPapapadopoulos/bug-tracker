@@ -15,8 +15,18 @@ public class User {
     private String job;
     private String email;
 
+    public List<Bug> getBugs() {
+        return bugs;
+    }
+
+    public void setBugs(List<Bug> bugs) {
+        this.bugs = bugs;
+    }
+
     @OneToMany(mappedBy = "user")
     private List<Bug> bugs;
+
+
 
     //ArrayList<Bug> assignedBugs;
 

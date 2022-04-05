@@ -3,6 +3,7 @@ package com.example.bugtracker.models;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -11,10 +12,11 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long projectId;
     private String name;
-//    private List<Bug> bugs;
-//    private List<Comment> comments ;
     private Date date;
     private String description;
+
+    @OneToMany(mappedBy = "project")
+    private List<Bug> bugs;
 
 
     public Project(Long projectId, String projectName, String description) {
