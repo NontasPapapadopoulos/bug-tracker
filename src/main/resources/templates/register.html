@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" media="screen" th:href="@{/css/style.css}"/>
+    <title>Document</title>
+  </head>
+
+
+  <body>
+
+
+    <div class="container">
+      <div class="login">
+        <h3>Bug Tracker</h3>
+        <div class="error"><p></p></div>
+
+
+        <form action="/register/saveEmployee"  th:object="${employee}" method="post">
+          <label for="username"></label>
+
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required
+            th:field="${employee.username}"
+          />
+          <label for="email"></label><input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            required
+            th:field="${employee.email}"
+          />
+          <br />
+          <label for="password"></label><input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+            th:field="${employee.password}"
+
+          />
+
+          <label for="password2"></label><input
+            type="password"
+            name="password2"
+            id="password2"
+            placeholder="Password"
+            required
+          />
+          <br />
+
+          <label for="job"></label><select id="job" name="job" th:field="${employee.job}">
+            <option value="programmer">Programmer</option>
+            <option value="ba">BA</option>
+            <option value="tester">Tester</option>
+          </select>
+
+          <button  type="submit">Register</button>
+
+        </form>
+
+
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  const registerButton = document.querySelector(".btn-register");
+
+  registerButton.addEventListener("click", function (e) {
+    const password = document.getElementById("password").value;
+    const password2 = document.getElementById("password2").value;
+
+    console.log(password);
+    console.log(password2);
+
+    if (password.length < 6) {
+      document.querySelector(".error p").innerHTML =
+        "The password length must be greater than 6.";
+      setTimeout(function () {
+        document.querySelector(".error p").innerHTML = "";
+      }, 3000);
+      return false;
+    }
+
+    if (password !== "" && password2 !== "" && password !== password2) {
+      document.querySelector(".error p").innerHTML =
+        "The passwords does not match";
+
+      setTimeout(function () {
+        document.querySelector(".error p").innerHTML = "";
+      }, 3000);
+    }
+
+    e.preventDefault();
+  });
+
+  const username = document.querySelector("#username");
+
+  username.addEventListener("keyup", (e) => {
+    const name = e.target.value;
+    console.log(name);
+  });
+</script>

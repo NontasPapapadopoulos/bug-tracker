@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link rel="stylesheet" href="popupform.css" /> -->
+
+  <link rel="stylesheet" href="./css/mainPage.css" />
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <title>Document</title>
+
+</head>
+<body>
+
+
+
+<!-- navbar -->
+<div class="navbar">
+  <div class="logo">
+    <img th:src="@{/images/logo2.jpg}"/>
+    <h2>Bug Tracker</h2>
+  </div>
+  <div class="nav-buttons">
+    <nav>
+      <ul class="menu">
+        <li>
+          <label class="switch">
+            <input id="check" type="checkbox" onclick="changeMode()" />
+            <span class="slider round"></span>
+          </label>
+        </li>
+        <li><a class="btn btn-bug" href="#">Create Bug</a></li>
+        <li><a class="btn btn-project" href="#">Create Project</a></li>
+        <li><a class="btn btn-logOut" href="#">Log Out</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="summaries">
+  <div class="total-bugs"><p>Number of bugs:</p></div>
+  <div class="pending-bugs"><p>Pending:</p></div>
+  <div class="under-testing"><p>Under testing:</p></div>
+  <div class="resolved-bugs"><p>Resolved</p></div>
+</div>
+
+
+ Modal Create Bug
+<div id="createBug" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <form action="/bug/create" method="post" th:object="${bug}">
+      <label  for="bugName">Bug Name</label>
+      <input type="text" name="bugName" id="bugName" th:field="${bug.name}">
+      <br />
+
+        <label for="projectId">Select Project</label>
+        <select name="projectId" id="projectId" th:field="${bug.projectId}">
+
+          <option value="" > </option>
+
+        </select>
+
+        <br />
+
+        <label for="assignUser">Assign to user:</label>
+        <select id="assignUser"  name="assignUser" th:field="${bug.userId}">
+
+          <option value="" > </option>
+
+        </select>
+
+        <br />
+        <label for="bugDescription">Bug Description</label>
+        <br />
+        <textarea
+                name="description"
+                id="bugDescription"
+                cols="30"
+                rows="10"
+                th:field="${bug.description}"
+        ></textarea>
+        <input type="submit" value="Submit" class="btn btn-submit">
+    </form>
+  </div>
+</div>
+
+
+<!-- Create post modal -->
+<div id="createProject" class="modal" >
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <form action="/project/create" method="post" th:object="${project}">
+
+      <label for="create-project" >Project name</label>
+
+      <input type="text"
+              id="create-project"
+              name="projectName"
+              required
+              th:field="${project.name}"> </input>
+      <br />
+
+      <label for="description" >Project Description</label>
+      <br />
+      <textarea
+              type="text"
+              id="description"
+              cols="30"
+              rows="10"
+              required
+              name="description"
+              th:field="${project.description}"w
+      ></textarea>
+      <input type="submit" value="Submit" class="btn btn-submit">
+
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="first-col">
+    <div class="search-bar">
+      <div class="">
+        <input
+                class="form-control"
+                type="text"
+                placeholder="Search Project"
+                aria-label="Search"
+        />
+      </div>
+    </div>
+
+    <div class="project-list">
+        <th:block th:each="project : ${projects}">
+            <a href="#" th:text="${project.name}" style="display:block;" ></a>
+        </th:block>
+    </div>
+
+  </div>
+
+  <div class="second-col">
+    <div class="current-project">
+      <h4 class="project-title">Current Project</h4>
+      <div class="select-display">
+        <a class="btn btn-bug" href="#">My Bugs</a>
+        <a class="btn btn-project" href="#">Project Bugs</a>
+      </div>
+    </div>
+
+    <div class="bug-list">
+      <ul>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{/js/app.js}" ></script>
+</body>
+</html>

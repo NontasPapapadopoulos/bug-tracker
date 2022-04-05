@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h3 {
+  display: inline-block;
+  margin-bottom: 40px;
+  margin-top: 25px;
+  font-size: 2rem;
+}
+.container {
+  position: fixed;
+  color: #333;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background: url("../images/login2.png") no-repeat center center/cover;
+}
+
+.login {
+  width: 700px;
+  height: 400px;
+  margin: auto;
+  margin-top: 300px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+  text-align: center;
+}
+
+.login form {
+  margin: auto;
+}
+
+.login input,
+.login select,
+button {
+  margin: 5px;
+  width: 60%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+}
+
+select {
+  text-align: center;
+}
+
+.login form label {
+  display: inline-block;
+}
+
+.btn {
+  /*border-radius: 0px;*/
+  border: none;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-log {
+  background-color: royalblue;
+  color: #fff;
+}
+
+.btn-register, button {
+  background-color: green;
+  color: #fff;
+}
+
+.error p {
+  color: red;
+}

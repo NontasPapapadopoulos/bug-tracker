@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" media="screen" th:href="@{/css/style.css}"/>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="login">
+        <h3>Bug Tracker</h3>
+
+        <form action="/login" method="post">
+          <!-- <label for="username">Username:</label> -->
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required
+          />
+          <br />
+          <!-- <label for="password">Password:</label> -->
+          <input
+            type="password"
+            name="username"
+            id="password"
+            placeholder="Password"
+            required
+          />
+
+          <input type="submit" value="Log in" class="btn btn-log" />
+        </form>
+
+
+        <form action="/register/">
+          <input
+            type="submit"
+            value="Register"
+            id="register"
+            class="btn btn-register"
+          />
+        </form>
+
+      </div>
+    </div>
+  </body>
+</html>
