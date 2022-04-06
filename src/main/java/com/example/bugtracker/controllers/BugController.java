@@ -21,7 +21,7 @@ public class BugController {
 
         bugRepository.save(bug);
 
-        return "redirect:/";
+        return "bugTracker";
 
     }
 

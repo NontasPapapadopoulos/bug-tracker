@@ -28,8 +28,6 @@ public class User {
 
 
 
-    //ArrayList<Bug> assignedBugs;
-
     public User(String username, String password, String job, String email) {
         this.username = username;
         this.password = password;

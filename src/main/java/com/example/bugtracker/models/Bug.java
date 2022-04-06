@@ -1,6 +1,7 @@
 package com.example.bugtracker.models;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -14,6 +15,7 @@ public class Bug {
     //private ArrayList<Comment> comments;
     private String description;
     private String name;
+    private Date date;
 
 
     @ManyToOne(cascade = CascadeType.REMOVE)

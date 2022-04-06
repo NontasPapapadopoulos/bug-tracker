@@ -25,6 +25,7 @@ public class LogInController {
     @Autowired
     private UserRepository userRepo;
 
+
     @GetMapping("/")
     public String displayLogInPage() {
 
@@ -32,7 +33,7 @@ public class LogInController {
     }
 
 
-    @PostMapping("/login")
+    @PostMapping("/bugTracker")
     public String renderBugTracker(Model model) {
 
         List<Project> projects = (List<Project>) projectRepo.findAll();

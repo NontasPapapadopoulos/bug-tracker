@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+
 
 <head>
   <meta charset="UTF-8" />
@@ -48,7 +51,7 @@
 </div>
 
 
- Modal Create Bug
+<!-- Modal Create Bug-->
 <div id="createBug" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -58,39 +61,35 @@
       <input type="text" name="bugName" id="bugName" th:field="${bug.name}">
       <br />
 
-        <label for="projectId">Select Project</label>
-        <select name="projectId" id="projectId" th:field="${bug.projectId}">
-
-          <option value="" > </option>
-
-        </select>
+      <label for="projectId">Select Project</label>
+      <select name="projectId" id="projectId" th:object="${projects}">
+        <option th:each="project : ${projects}" th:value="${project.projectId}" th:text="${project.name}"> </option>
+      </select>
 
         <br />
 
-        <label for="assignUser">Assign to user:</label>
-        <select id="assignUser"  name="assignUser" th:field="${bug.userId}">
+      <label for="assignUser">Assign to user:</label>
+      <select id="assignUser"  name="assignUser" th:object="${users}">
+        <option th:each="user : ${users}" th:value="${user.userId}" th:text="${user.name}"> </option>
+      </select>
 
-          <option value="" > </option>
-
-        </select>
-
-        <br />
-        <label for="bugDescription">Bug Description</label>
-        <br />
-        <textarea
-                name="description"
-                id="bugDescription"
-                cols="30"
-                rows="10"
-                th:field="${bug.description}"
-        ></textarea>
+      <br />
+      <label for="bugDescription">Bug Description</label>
+      <br />
+      <textarea
+              name="description"
+              id="bugDescription"
+              cols="30"
+              rows="10"
+              th:field="${bug.description}"
+      ></textarea>
         <input type="submit" value="Submit" class="btn btn-submit">
     </form>
   </div>
 </div>
 
 
-<!-- Create post modal -->
+<!--Create Project modal-->
 <div id="createProject" class="modal" >
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -115,18 +114,13 @@
               rows="10"
               required
               name="description"
-              th:field="${project.description}"w
+              th:field="${project.description}"
       ></textarea>
       <input type="submit" value="Submit" class="btn btn-submit">
 
     </form>
   </div>
 </div>
-
-
-
-
-
 
 
 
