@@ -18,7 +18,7 @@
         <div class="error"><p></p></div>
 
 
-        <form action="/register/saveEmployee"  th:object="${employee}" method="post">
+        <form action="/register/saveUser"  th:object="${user}" method="post">
           <label for="username"></label>
 
           <input
@@ -27,7 +27,7 @@
             id="username"
             placeholder="Username"
             required
-            th:field="${employee.username}"
+            th:field="${user.username}"
           />
           <label for="email"></label><input
             type="email"
@@ -35,7 +35,7 @@
             id="email"
             placeholder="Email"
             required
-            th:field="${employee.email}"
+            th:field="${user.email}"
           />
           <br />
           <label for="password"></label><input
@@ -44,7 +44,7 @@
             id="password"
             placeholder="Password"
             required
-            th:field="${employee.password}"
+            th:field="${user.password}"
 
           />
 
@@ -57,7 +57,7 @@
           />
           <br />
 
-          <label for="job"></label><select id="job" name="job" th:field="${employee.job}">
+          <label for="job"></label><select id="job" name="job" th:field="${user.job}">
             <option value="programmer">Programmer</option>
             <option value="ba">BA</option>
             <option value="tester">Tester</option>

@@ -21,16 +21,16 @@ public class RegisterController {
     @GetMapping("/")
     public String displayRegister(Model model) {
 
-        User employee = new User();
-        model.addAttribute("employee", employee);
+        User user = new User();
+        model.addAttribute("user", user);
         return "register";
     }
 
 
-    @PostMapping("/saveEmployee")
-    public String createEmployee(User employee) {
+    @PostMapping("/saveUser")
+    public String createEmployee(User user) {
 
-        userRepo.save(employee);
+        userRepo.save(user);
         return "redirect:/";
     }
 }

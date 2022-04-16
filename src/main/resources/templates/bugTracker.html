@@ -10,7 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- <link rel="stylesheet" href="popupform.css" /> -->
 
-  <link rel="stylesheet" href="./css/mainPage.css" />
+<!--  <link rel="stylesheet" href="./css/mainPage.css" />-->
+  <link rel="stylesheet" type="text/css" media="all"
+        href="../static/css/mainPage.css" th:href="@{/css/mainPage.css}" />
+
 
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <title>Document</title>
@@ -56,28 +59,27 @@
   <div class="modal-content">
     <span class="close">&times;</span>
 
-    <form action="/bug/create" method="post" th:object="${bug}">
+    <form action="/bug/create" th:action="@{/bug/create}" method="POST" th:object="${bug}">
       <label  for="bugName">Bug Name</label>
-      <input type="text" name="bugName" id="bugName" th:field="${bug.name}">
+      <input type="text" id="bugName" th:field="${bug.name}">
       <br />
 
       <label for="projectId">Select Project</label>
-      <select name="projectId" id="projectId" th:object="${projects}">
+      <select name="projectId" id="projectId" th:field="*${project}">
         <option th:each="project : ${projects}" th:value="${project.projectId}" th:text="${project.name}"> </option>
       </select>
 
         <br />
 
-      <label for="assignUser">Assign to user:</label>
-      <select id="assignUser"  name="assignUser" th:object="${users}">
-        <option th:each="user : ${users}" th:value="${user.userId}" th:text="${user.name}"> </option>
-      </select>
+<!--      <label for="assignUser">Assign to user:</label>-->
+<!--      <select id="assignUser"  th:field="*${users}" multiple="multiple">-->
+<!--        <option th:each="user : ${users}" th:value="${user.userId}" th:text="${user.username}"> </option>-->
+<!--      </select>-->
 
       <br />
       <label for="bugDescription">Bug Description</label>
       <br />
       <textarea
-              name="description"
               id="bugDescription"
               cols="30"
               rows="10"
