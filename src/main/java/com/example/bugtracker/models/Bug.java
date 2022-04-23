@@ -3,22 +3,27 @@ package com.example.bugtracker.models;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 
 
 @Entity
+@Table(name = "bug")
 public class Bug {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bugId;
 
-    @Column(name="status")
+    @Column(name="bug_status")
     @Enumerated(EnumType.STRING)
     private BugStatus status;
 
+    @Column(name = "bug_description")
     private String description;
-    private String name;
+
+    @Column(name = "bug_name")
+    private String bugName;
+
+    @Column(name = "bug_date")
     private Date date;
 
 
@@ -31,17 +36,19 @@ public class Bug {
     private Project project;
 
 
-    public Bug(String bugName, String description, Project project) {
-        this.name = bugName;
+    public Bug(String bugName, String description, Project project, User user) {
+        this.bugName = bugName;
         this.description = description;
         this.status = BugStatus.UNRESOLVED;
         this.date = Date.valueOf(LocalDate.now());
         this.project = project;
+        this.user = user;
     }
 
     public Bug() {
 
     }
+
 
 
     public Long getBugId() {
@@ -68,12 +75,12 @@ public class Bug {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getBugName() {
+        return bugName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBugName(String name) {
+        this.bugName = name;
     }
 
     public Date getDate() {

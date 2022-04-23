@@ -1,13 +1,23 @@
 const projects = document.querySelectorAll('.project-list a'); 
+//const firstProject = projects.item(0);
+
+const selectedProject = document.querySelector('.current-project h4');
+
+// if (firstProject !== null) {
+//     if (firstProject.innerHTML !== null || firstProject.innerHTML !== "") {
+//         selectedProject.innerHTML = firstProject.innerHTML;
+//
+//     }
+//
+// }
+
 
 projects.forEach(project => project.addEventListener('click', (e) => {
-    
-    let currentProject = document.querySelector('.current-project h4'); 
-    currentProject.innerHTML = e.target.text;
-  
+
+    selectedProject.innerHTML = e.target.text;
+    //console.log(e.target.text);
 }));
 
-// const checkbox = document.getElementById('check').addEventListener()
 
 
 
@@ -132,3 +142,26 @@ function openCloseModal(modal,button,span) {
 
 openCloseModal(createBuModal,btn_bug,span1); 
 openCloseModal(createProjectModal, btn_project, span2);
+
+
+const projectButton = document.querySelector('.btn-projectBugs');
+
+
+
+//var selectedProject = document.querySelector('.current-project h4').innerHTML;
+
+
+// projectButton.addEventListener('click', getAllBugsByProject() );
+//
+//
+// function getAllBugsByProject() {
+//     $.ajax({
+//         type: "GET",
+//         url: "/bug/getBugsByProjectName?projectName=" + selectedProject.innerHTML,
+//         success: function (result) {
+//             if (result.status == "success") {
+//                 console.log(result.data);
+//             }
+//         }
+//     })
+// }

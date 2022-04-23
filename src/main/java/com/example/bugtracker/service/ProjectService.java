@@ -13,11 +13,16 @@ public class ProjectService {
 
     public void createProject(Project project){
 
-        String name =project.getName();
+        String name =project.getProjectName();
         String description = project.getDescription();
 
         Project newProject = new Project(name, description);
 
         projectRepository.save(newProject);
+    }
+
+
+    public Project getProjectById(Long projectId){
+        return projectRepository.findById(projectId).orElseThrow(RuntimeException::new);
     }
 }

@@ -46,11 +46,11 @@
   </div>
 </div>
 
-<div class="summaries">
-  <div class="total-bugs"><p>Number of bugs:</p></div>
-  <div class="pending-bugs"><p>Pending:</p></div>
-  <div class="under-testing"><p>Under testing:</p></div>
-  <div class="resolved-bugs"><p>Resolved</p></div>
+<div class="summaries" th:object="${bugStatus}">
+  <div class="total-bugs"><p>Number of bugs: </p> <span th:text=${bugStatus.totalBugs}></span></div>
+  <div class="pending-bugs"><p>Pending:</p> <span th:text=${bugStatus.unresolvedBugs}></span></div>
+  <div class="under-testing"><p>Under testing:</p> <span th:text=${bugStatus.underTesting}></span></div>
+  <div class="resolved-bugs"><p>Resolved</p> <span th:text=${bugStatus.resolvedBugs}></span></div>
 </div>
 
 
@@ -59,22 +59,22 @@
   <div class="modal-content">
     <span class="close">&times;</span>
 
-    <form action="/bug/create" th:action="@{/bug/create}" method="POST" th:object="${bug}">
+    <form action="/bug/create"  method="POST" th:object="${bug}">
       <label  for="bugName">Bug Name</label>
-      <input type="text" id="bugName" th:field="${bug.name}">
+      <input type="text" id="bugName" th:field="${bug.bugName}">
       <br />
 
       <label for="projectId">Select Project</label>
-      <select name="projectId" id="projectId" th:field="*${project}">
-        <option th:each="project : ${projects}" th:value="${project.projectId}" th:text="${project.name}"> </option>
+      <select name="projectId" id="projectId" th:field="${bug.project}">
+        <option th:each="project : ${projects}" th:value="${project.projectId}" th:text="${project.projectName}"> </option>
       </select>
 
         <br />
 
-<!--      <label for="assignUser">Assign to user:</label>-->
-<!--      <select id="assignUser"  th:field="*${users}" multiple="multiple">-->
-<!--        <option th:each="user : ${users}" th:value="${user.userId}" th:text="${user.username}"> </option>-->
-<!--      </select>-->
+      <label for="assignUser">Assign to user:</label>
+      <select id="assignUser"  th:field="${bug.user}" multiple="multiple" required>
+        <option th:each="user : ${users}" th:value="${user.userId}" th:text="${user.username}"> </option>
+      </select>
 
       <br />
       <label for="bugDescription">Bug Description</label>
@@ -104,7 +104,7 @@
               id="create-project"
               name="projectName"
               required
-              th:field="${project.name}"> </input>
+              th:field="${project.projectName}"> </input>
       <br />
 
       <label for="description" >Project Description</label>
@@ -142,7 +142,8 @@
 
     <div class="project-list">
         <th:block th:each="project : ${projects}">
-            <a href="#" th:text="${project.name}" style="display:block;" ></a>
+            <a href="#" th:text="${project.projectName}" th:field="${project.projectId}"  style="display:block;" ></a>
+
         </th:block>
     </div>
 
@@ -153,7 +154,7 @@
       <h4 class="project-title">Current Project</h4>
       <div class="select-display">
         <a class="btn btn-bug" href="#">My Bugs</a>
-        <a class="btn btn-project" href="#">Project Bugs</a>
+        <a class="btn btn-project btn-projectBugs" href="#">Project Bugs</a>
       </div>
     </div>
 

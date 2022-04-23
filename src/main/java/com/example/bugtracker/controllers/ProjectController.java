@@ -28,28 +28,11 @@ public class ProjectController {
     @Autowired
     private LogInController logInController;
 
-    @Autowired
-    private ProjectRepository projectRepo;
-
-    @Autowired
-    private UserRepository userRepo;
-
 
     @PostMapping("/create")
     public String createProject(Project project, Model model){
         projectService.createProject(project);
-        List<Project> projects = (List<Project>) projectRepo.findAll();
-        List<User> users = (List<User>) userRepo.findAll();
-
-        Project aProject = new Project();
-
-        Bug bug = new Bug();
-
-        model.addAttribute("projects", projects);
-        model.addAttribute("project", aProject);
-        model.addAttribute("users", users);
-        model.addAttribute("bug",bug);
-        return "bugTracker";
+        return logInController.displayMainPage(model);
 
 
     }
