@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -34,27 +35,19 @@ public class BugController {
     @PostMapping("/create")
     public String createBug(Bug bug, Project project, User user, Model model){
 
-        System.out.println(bug.getDescription());
-        System.out.println(bug.getDescription());
-
         Long projectId = project.getProjectId();
         Long userId = user.getUserId();
-        System.out.println(userId);
-        System.out.println(projectId);
-
 
         bugService.createBug(bug, projectId, userId);
 
         return logInController.displayMainPage(model);
-
     }
 
     @GetMapping("/getBugsByProjectName")
     public void getBugsByProjectName(@RequestParam("projectName") String projectName) {
 
-        System.out.println(projectName);
+        List<Bug> bugs = bugService.getBugsByProjectName(projectName);
 
-        bugService.getBugsByProjectName(projectName);
 
     }
 

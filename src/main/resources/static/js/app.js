@@ -1,15 +1,15 @@
 const projects = document.querySelectorAll('.project-list a'); 
-//const firstProject = projects.item(0);
+const bugList =  document.querySelector('.bug-list');
 
 const selectedProject = document.querySelector('.current-project h4');
 
-// if (firstProject !== null) {
-//     if (firstProject.innerHTML !== null || firstProject.innerHTML !== "") {
-//         selectedProject.innerHTML = firstProject.innerHTML;
-//
-//     }
-//
-// }
+if (projects !== null || projects.length >0) {
+    const firstProject = projects.item(0);
+    if (firstProject.innerHTML !== null || firstProject.innerHTML !== "") {
+        selectedProject.innerHTML = firstProject.innerHTML;
+    }
+
+}
 
 
 projects.forEach(project => project.addEventListener('click', (e) => {
@@ -61,59 +61,6 @@ function changeMode() {
 
 
 
-// // Get the modal
-// var createBuModal = document.getElementById("createBug");
-
-// // Get the button that opens the modal
-// var btn_bug = document.querySelector('.btn-bug');
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // When the user clicks on the button, open the modal
-// btn_bug.onclick = function() {
-//   createBuModal.style.display = "block";
-// }
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//   createBuModal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == createBuModal) {
-//     createBuModal.style.display = "none";
-//   }
-// }
-
-
-
-// // Get the modal
-// var createProjectModal = document.getElementById("createProject");
-
-// // Get the button that opens the modal
-// var btn_project = document.querySelector('.btn-project');
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[1];
-
-// // When the user clicks on the button, open the modal
-// btn_project.onclick = function() {
-//   createProjectModal.style.display = "block";
-// }
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//   createProjectModal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == createProjectModal) {
-//     createProjectModal.style.display = "none";
-//   }
-// }
 
 var span1 = document.getElementsByClassName("close")[0]; 
 var span2 = document.getElementsByClassName("close")[1]; 
@@ -151,17 +98,42 @@ const projectButton = document.querySelector('.btn-projectBugs');
 //var selectedProject = document.querySelector('.current-project h4').innerHTML;
 
 
-// projectButton.addEventListener('click', getAllBugsByProject() );
-//
-//
+//projectButton.addEventListener('click', getAllBugsByProject() );
+
+
 // function getAllBugsByProject() {
 //     $.ajax({
 //         type: "GET",
 //         url: "/bug/getBugsByProjectName?projectName=" + selectedProject.innerHTML,
 //         success: function (result) {
 //             if (result.status == "success") {
+//                 bugList.text(result);
 //                 console.log(result.data);
 //             }
 //         }
 //     })
 // }
+
+
+
+
+
+window.addEventListener("load", () => {
+    // get html elements
+    var filter = document.querySelector('#searchProject');
+    var list = document.querySelectorAll('.project-list a');
+    //attach key up listener to search bar
+    filter.onkeyup = () => {
+
+        //get current search
+        let search = filter.value.toLowerCase();
+        for (let i of list) {
+            let item = i.innerHTML.toLowerCase();
+            if (item.indexOf(search) === -1) {
+                i.style.display="none";
+            } else {
+                i.style.display="block";
+            }
+        }
+    };
+});

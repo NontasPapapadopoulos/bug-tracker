@@ -93,9 +93,12 @@ nav a {
 /* Summaries */
 .summaries {
   max-width: 1400px;
-
   margin-top: 100px;
   display: flex;
+}
+
+.summaries span {
+  margin-left: 50%;
 }
 
 /* Container */
@@ -132,6 +135,10 @@ nav a {
   border-radius: 5px; */
   margin-bottom: 30px;
   text-align: center;
+}
+
+.project-list a.hide {
+  display:none;
 }
 
 .bug-list li,

@@ -50,7 +50,7 @@
   <div class="total-bugs"><p>Number of bugs: </p> <span th:text=${bugStatus.totalBugs}></span></div>
   <div class="pending-bugs"><p>Pending:</p> <span th:text=${bugStatus.unresolvedBugs}></span></div>
   <div class="under-testing"><p>Under testing:</p> <span th:text=${bugStatus.underTesting}></span></div>
-  <div class="resolved-bugs"><p>Resolved</p> <span th:text=${bugStatus.resolvedBugs}></span></div>
+  <div class="resolved-bugs"><p>Resolved:</p> <span th:text=${bugStatus.resolvedBugs}></span></div>
 </div>
 
 
@@ -131,7 +131,7 @@
   <div class="first-col">
     <div class="search-bar">
       <div class="">
-        <input
+        <input id="searchProject"
                 class="form-control"
                 type="text"
                 placeholder="Search Project"

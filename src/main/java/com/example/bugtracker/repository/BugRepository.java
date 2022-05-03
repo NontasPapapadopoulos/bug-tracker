@@ -27,7 +27,7 @@ public interface BugRepository extends CrudRepository <Bug, Long>  {
     @Query(value="SELECT * from bug where project_id = ?1" ,nativeQuery=true )
     public List<Bug> getBugsByProject(Long projectId);
 
-    @Query(value="SELECT * from bug where project_id = (select project_id from project where name = 1?)" ,nativeQuery=true )
+    @Query(value="SELECT * from bug where project_id = (select project_id from project where project_name = ?1)" ,nativeQuery=true )
     public List<Bug> getBugsByProjectName(String projectName);
 
 
