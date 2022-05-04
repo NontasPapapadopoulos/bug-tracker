@@ -141,9 +141,9 @@ nav a {
   display:none;
 }
 
-.bug-list li,
-.project-list li {
-  padding: 15px;
+.bug-list li ,
+.project-list a  {
+  padding: 10px;
 }
 
 .bug-list a,

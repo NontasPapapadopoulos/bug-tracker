@@ -95,18 +95,17 @@ const projectButton = document.querySelector('.btn-projectBugs');
 
 
 
-//var selectedProject = document.querySelector('.current-project h4').innerHTML;
 
 
-//projectButton.addEventListener('click', getAllBugsByProject() );
-
-
+// projectButton.addEventListener('click', getAllBugsByProject() );
+//
+//
 // function getAllBugsByProject() {
 //     $.ajax({
 //         type: "GET",
 //         url: "/bug/getBugsByProjectName?projectName=" + selectedProject.innerHTML,
 //         success: function (result) {
-//             if (result.status == "success") {
+//             if (result.status === "success") {
 //                 bugList.text(result);
 //                 console.log(result.data);
 //             }
@@ -115,7 +114,40 @@ const projectButton = document.querySelector('.btn-projectBugs');
 // }
 
 
+$(document).ready(
+    function() {
+        $('.btn-projectBugs').click(function (event) {
+            ajaxGet();
+        });
 
+        function ajaxGet() {
+            $.ajax({
+                type: "GET",
+                url: "/bug/getBugsByProjectName?projectName=" + selectedProject.innerHTML,
+                dataType: 'json', // added data type
+                success: function (result) {
+                    if (result != null) {
+
+                        $('.bug-list ul').empty();
+                        for (let i=0; i<result.length; i++) {
+                            let bugName = result[i].bugName;
+                            let li = document.createElement('li');
+                            let a = document.createElement('a');
+                            a.appendChild(document.createTextNode(bugName));
+                            li.append(a);
+                            $('.bug-list ul').append(li);
+                        }
+                    } else {
+                        console.log('fail');
+                    }
+                },
+                error: function (e) {
+                    console.log("ERROR: ", e);
+                }
+            });
+        }
+    }
+)
 
 
 window.addEventListener("load", () => {

@@ -9,6 +9,8 @@ import com.example.bugtracker.repository.ProjectRepository;
 import com.example.bugtracker.service.BugService;
 import com.example.bugtracker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,11 +46,10 @@ public class BugController {
     }
 
     @GetMapping("/getBugsByProjectName")
-    public void getBugsByProjectName(@RequestParam("projectName") String projectName) {
+    public ResponseEntity<Object> getBugsByProjectName(@RequestParam("projectName") String projectName) {
 
         List<Bug> bugs = bugService.getBugsByProjectName(projectName);
-
-
+        return new ResponseEntity<Object>(bugs, HttpStatus.OK);
     }
 
 }

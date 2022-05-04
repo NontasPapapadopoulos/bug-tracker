@@ -1,5 +1,7 @@
 package com.example.bugtracker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -26,11 +28,12 @@ public class Bug {
     @Column(name = "bug_date")
     private Date date;
 
-
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     public User user;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "project_id")
     private Project project;
