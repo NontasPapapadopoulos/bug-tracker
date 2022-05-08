@@ -94,26 +94,6 @@ openCloseModal(createProjectModal, btn_project, span2);
 const projectButton = document.querySelector('.btn-projectBugs');
 
 
-
-
-
-// projectButton.addEventListener('click', getAllBugsByProject() );
-//
-//
-// function getAllBugsByProject() {
-//     $.ajax({
-//         type: "GET",
-//         url: "/bug/getBugsByProjectName?projectName=" + selectedProject.innerHTML,
-//         success: function (result) {
-//             if (result.status === "success") {
-//                 bugList.text(result);
-//                 console.log(result.data);
-//             }
-//         }
-//     })
-// }
-
-
 $(document).ready(
     function() {
         $('.btn-projectBugs').click(function (event) {
@@ -131,9 +111,12 @@ $(document).ready(
                         $('.bug-list ul').empty();
                         for (let i=0; i<result.length; i++) {
                             let bugName = result[i].bugName;
+                            let bugId = result[i].bugId;
                             let li = document.createElement('li');
                             let a = document.createElement('a');
                             a.appendChild(document.createTextNode(bugName));
+                            a.setAttribute("href", "/bug/getBugDetails?bugId=" + bugId);
+                            a.setAttribute("method", "get");
                             li.append(a);
                             $('.bug-list ul').append(li);
                         }
@@ -169,3 +152,37 @@ window.addEventListener("load", () => {
         }
     };
 });
+
+//
+// const bugId = document.querySelector('#bugId').innerHTML;
+// var comment = document.querySelector('.bugText').innerHTML;
+// if (comment === null) {
+//     comment = "";
+// }
+// console.log(bugId+ comment);
+// $(document).ready(
+//     function() {
+//         $('#bugComment').click(function (event) {
+//             ajaxPost();
+//         });
+//
+//         function ajaxPost() {
+//             $.ajax({
+//                 type: "POST",
+//                 url: "/comment/addComment?bugId="+bugId+"?comment="+comment,
+//                 dataType: 'json', // added data type
+//                 success: function (result) {
+//                     if (result != null) {
+//
+//                         console.log('okay')
+//                     } else {
+//                         console.log('fail');
+//                     }
+//                 },
+//                 error: function (e) {
+//                     console.log("ERROR: ", e);
+//                 }
+//             });
+//         }
+//     }
+// )

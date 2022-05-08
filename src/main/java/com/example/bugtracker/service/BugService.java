@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -54,6 +55,14 @@ public class BugService {
 
     public List<Bug> getBugsByProjectName(String projectName){
         return bugRepository.getBugsByProjectName(projectName);
+    }
+
+    public Optional<Bug> getBugById(Long id) {
+        return bugRepository.findById(id);
+    }
+
+    public void updateBugStatus(Long id, String status) {
+        bugRepository.updateBugStatus(id, status);
     }
 
 }

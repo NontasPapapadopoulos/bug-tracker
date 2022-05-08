@@ -1,9 +1,11 @@
 package com.example.bugtracker.repository;
 
 import com.example.bugtracker.models.Bug;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,5 +36,10 @@ public interface BugRepository extends CrudRepository <Bug, Long>  {
 
     @Query(value="SELECT * from bug where project_id = ?1 and user_id= ?2" ,nativeQuery=true )
     public List<Bug> getBugsByProjectAndUser(Long projectId, Long userId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE bug SET bug_status = ?2 WHERE bug_id = ?1",nativeQuery=true)
+    public void updateBugStatus(Long bugId, String status);
 
 }

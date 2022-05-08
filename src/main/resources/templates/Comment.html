@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="popupform.css" /> -->
+
+    <!--  <link rel="stylesheet" href="./css/mainPage.css" />-->
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/mainPage.css" th:href="@{/css/mainPage.css}" />
+
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+
+</head>
+<body>
+
+
+<!--Show details-->
+    <div class="details" th:object="${bug}">
+
+        <h1 class="bugTitle" th:text="${bug.bugName}"></h1>
+
+        <h2 th:text="${bug.status}"></h2>
+        <h2 th:text="${project.projectName}"></h2>
+
+
+        <h3 th:text="${bug.date}"></h3>
+
+        <p th:text="${bug.description}"></p>
+        <p class="bugId" th:text="${bug.bugId}" ></p>
+    </div>
+
+<!--  change status and add comments  -->
+    <div class="changes">
+
+        <form action="/bug/updateBugStatus" method="post" >
+
+            <input type="hidden" name="bugId" th:field="${bug.bugId}">
+
+            <select id="status" name="status" th:field="${bug.status}">
+                <option value="UNRESOLVED">UNRESOLVED</option>
+                <option value="UNDER_TESTING">UNDER TESTING</option>
+                <option value="RESOLVED">RESOLVED</option>
+            </select>
+
+            <button  type="submit">Update Status</button>
+
+        </form>
+
+
+
+        <form action="/comment/addComment" method="post"  >
+            <input type="hidden" name="bugId" th:field="${bug.bugId}">
+
+            <textarea name="description" id="description" cols="30" rows="10" >
+
+
+            </textarea>
+
+            <br>
+            <button  type="submit">Add Comment</button>
+        </form>
+
+
+    </div>
+
+
+<!--    display comments-->
+    <div class="comments" th:object="${comments}">
+        <th:block th:each="comment : ${comments}">
+            <div>
+                <h5 th:text="${comment.dateCreated}"></h5>
+                <p th:text="${comment.description}"></p>
+
+            </div>
+
+        </th:block>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<script th:src="@{/js/app.js}" ></script>-->
+</body>
+</html>
+

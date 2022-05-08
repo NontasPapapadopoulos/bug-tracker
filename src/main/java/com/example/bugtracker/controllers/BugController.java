@@ -2,12 +2,11 @@ package com.example.bugtracker.controllers;
 
 
 import com.example.bugtracker.models.Bug;
+import com.example.bugtracker.models.Comment;
 import com.example.bugtracker.models.Project;
 import com.example.bugtracker.models.User;
-import com.example.bugtracker.repository.BugRepository;
-import com.example.bugtracker.repository.ProjectRepository;
 import com.example.bugtracker.service.BugService;
-import com.example.bugtracker.service.ProjectService;
+import com.example.bugtracker.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +31,9 @@ public class BugController {
     @Autowired
     private BugService bugService;
 
+    @Autowired
+    private CommentService commentService;
+
 
 
     @PostMapping("/create")
@@ -51,5 +53,31 @@ public class BugController {
         List<Bug> bugs = bugService.getBugsByProjectName(projectName);
         return new ResponseEntity<Object>(bugs, HttpStatus.OK);
     }
+
+    @GetMapping("/getBugDetails")
+    public String getBugDetails(@RequestParam("bugId") Long bugId, Model model) {
+
+        model.addAttribute("bug",bugService.getBugById(bugId).get());
+        model.addAttribute("project",bugService.getBugById(bugId).get().getProject());
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", commentService.findAllCommentsByBugId(bugId));
+
+        System.out.println( commentService.findAllCommentsByBugId(bugId));
+        System.out.println(bugId);
+
+
+        return "Comment";
+
+    }
+
+    @PostMapping("/updateBugStatus")
+    public String updateBugStatus(@RequestParam("bugId") Long bugId, @RequestParam("status") String status, Model model) {
+
+        bugService.updateBugStatus(bugId, status);
+
+
+        return getBugDetails(bugId, model);
+    }
+
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -28,6 +29,7 @@ public class Bug {
     @Column(name = "bug_date")
     private Date date;
 
+
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
@@ -37,6 +39,13 @@ public class Bug {
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "project_id")
     private Project project;
+
+
+
+
+    @OneToMany(mappedBy = "bug")
+    private List<Comment> comments;
+
 
 
     public Bug(String bugName, String description, Project project, User user) {
