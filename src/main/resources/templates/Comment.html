@@ -13,6 +13,8 @@
     <!--  <link rel="stylesheet" href="./css/mainPage.css" />-->
     <link rel="stylesheet" type="text/css" media="all"
           href="../static/css/mainPage.css" th:href="@{/css/mainPage.css}" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../static/css/mainPage.css" th:href="@{/css/comments.css}" />
 
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -21,21 +23,68 @@
 </head>
 <body>
 
+<div class="navbar">
+    <div class="logo">
+        <img th:src="@{/images/logo2.jpg}"/>
+        <h2>Bug Tracker</h2>
+    </div>
+    <div class="nav-buttons">
+        <nav>
+            <ul class="menu">
+                <li>
+                    <label class="switch">
+                        <input id="check" type="checkbox" onclick="changeMode()" />
+                        <span class="slider round"></span>
+                    </label>
+                </li>
+                <li><a class="btn btn-logOut" href="#">Log Out</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
 
 <!--Show details-->
     <div class="details" th:object="${bug}">
 
-        <h1 class="bugTitle" th:text="${bug.bugName}"></h1>
+        <table>
+            <tr>
+                <td>Bug Name:</td>
+                <td th:text="${bug.bugName}"></td>
+            </tr>
+            <tr>
+                <td>Project:</td>
+                <td th:text="${project.projectName}"></td>
+            </tr>
+            <tr>
+                <td>Date of Creation:</td>
+                <td th:text="${bug.date}"></td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td th:text="${bug.description}"></td>
+            </tr>
+            <tr>
+                <td>Assignee:</td>
+                <td th:text="${assignee}"></td>
+            </tr>
+            <tr>
+                <td>Bug Status:</td>
+                <td th:text="${bug.status}"></td>
+            </tr>
 
-        <h2 th:text="${bug.status}"></h2>
-        <h2 th:text="${project.projectName}"></h2>
-
-
-        <h3 th:text="${bug.date}"></h3>
-
-        <p th:text="${bug.description}"></p>
-        <p class="bugId" th:text="${bug.bugId}" ></p>
+        </table>
     </div>
+
+
+
+
+
+
 
 <!--  change status and add comments  -->
     <div class="changes">
@@ -50,7 +99,7 @@
                 <option value="RESOLVED">RESOLVED</option>
             </select>
 
-            <button  type="submit">Update Status</button>
+            <button  class="btn btn-bug" type="submit">Update Status</button>
 
         </form>
 
@@ -65,7 +114,7 @@
             </textarea>
 
             <br>
-            <button  type="submit">Add Comment</button>
+            <button class="btn btn-submit"  type="submit">Add Comment</button>
         </form>
 
 
@@ -76,14 +125,16 @@
     <div class="comments" th:object="${comments}">
         <th:block th:each="comment : ${comments}">
             <div>
-                <h5 th:text="${comment.dateCreated}"></h5>
-                <p th:text="${comment.description}"></p>
-
+                <table>
+                    <tr>
+                        <td th:text="${comment.dateCreated}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="${comment.description}"></td>
+                    </tr>
+                </table>
             </div>
-
         </th:block>
-
-
     </div>
 
 
@@ -99,7 +150,7 @@
 
 
 
-<!--<script th:src="@{/js/app.js}" ></script>-->
+<script th:src="@{/js/comments.js}" ></script>
 </body>
 </html>
 

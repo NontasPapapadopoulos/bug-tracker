@@ -29,7 +29,8 @@ public class CommentController {
         commentService.addComment(description, bugId);
 
 
-        return bugController.getBugDetails(bugId, model);
+
+        return bugController.getBugDetails(bugId, model
     }
 
 }

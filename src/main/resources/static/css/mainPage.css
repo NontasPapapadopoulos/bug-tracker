@@ -19,7 +19,6 @@ a {
 
 .navbar {
   /* width: 70vw; */
-  height: 70px;
   display: flex;
   align-items: center;
 
@@ -315,6 +314,10 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
+
+
+
+
 @media only screen and (max-width: 1800px) {
   .container {
     max-width: 80vw;
@@ -364,3 +367,6 @@ input:checked + .slider:before {
     /* margin-left: ; */
   }
 }
+
+
+

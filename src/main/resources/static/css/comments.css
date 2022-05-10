@@ -1,0 +1,69 @@
+
+/*.details,*/
+/*.comments,*/
+/*.changes{*/
+/*    background-color: red;*/
+/*    margin: auto;*/
+/*    text-align: center;*/
+/*}*/
+
+
+.details {
+    margin-top: 100px;
+    width:1000px;
+    text-align: left;
+    /*margin-left:0;*/
+}
+
+
+.details td {
+    padding:0 15px 15px 15px;
+}
+
+
+
+.changes {
+    text-align:center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+}
+
+.changes form {
+    margin-bottom: 20px;
+}
+
+.changes button {
+    margin-top: 15px;
+
+}
+
+
+.comments {
+    text-align: left;
+    width:1000px ;
+
+}
+
+.comments table {
+    margin:15px;
+}
+
+
+
+select {
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+textarea {
+    border-radius: 7px;
+    width: 500px;
+    height: 200px;
+}
+
+textarea:focus {
+    outline: none;
+    border: none;
+}

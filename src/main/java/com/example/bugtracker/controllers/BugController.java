@@ -61,10 +61,7 @@ public class BugController {
         model.addAttribute("project",bugService.getBugById(bugId).get().getProject());
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", commentService.findAllCommentsByBugId(bugId));
-
-        System.out.println( commentService.findAllCommentsByBugId(bugId));
-        System.out.println(bugId);
-
+        model.addAttribute("assignee", bugService.getBugById(bugId).get().getUser().getUsername());
 
         return "Comment";
 

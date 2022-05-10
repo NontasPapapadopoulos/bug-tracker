@@ -24,6 +24,7 @@ public class CommentService {
         Bug bug = bugRepository.findById(bugId).orElseThrow(RuntimeException::new);
         Comment comment = new Comment(commentDescription, bug);
 
+        System.out.println(comment.getDateCreated());
         commentRepository.save(comment);
     }
 
