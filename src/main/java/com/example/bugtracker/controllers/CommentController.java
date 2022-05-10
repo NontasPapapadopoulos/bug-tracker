@@ -30,7 +30,7 @@ public class CommentController {
 
 
 
-        return bugController.getBugDetails(bugId, model
+        return bugController.getBugDetails(bugId, model);
     }
 
 }
