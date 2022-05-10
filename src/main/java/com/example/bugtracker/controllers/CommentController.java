@@ -25,7 +25,7 @@ public class CommentController {
     BugController bugController;
 
     @PostMapping("/addComment")
-    public String addComment(@RequestParam("description") String description, @RequestParam("bugId") Long bugId , Model model) {
+    public String addComment(@RequestParam("description") String description, @RequestParam("bugId") Long bugId) {
         commentService.addComment(description, bugId);
 
 
