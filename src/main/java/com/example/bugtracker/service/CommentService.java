@@ -24,8 +24,12 @@ public class CommentService {
         Bug bug = bugRepository.findById(bugId).orElseThrow(RuntimeException::new);
         Comment comment = new Comment(commentDescription, bug);
 
-        System.out.println(comment.getDateCreated());
-        commentRepository.save(comment);
+        System.out.println(comment.getDescription());
+        if (comment.getDescription()!=null && !comment.getDescription().trim().isEmpty() ) {
+            commentRepository.save(comment);
+        }
+
+
     }
 
     public List<Comment> findAllCommentsByBugId(Long bugId) {

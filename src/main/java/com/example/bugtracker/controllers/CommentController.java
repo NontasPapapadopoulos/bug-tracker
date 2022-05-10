@@ -29,8 +29,8 @@ public class CommentController {
         commentService.addComment(description, bugId);
 
 
-
-        return bugController.getBugDetails(bugId, model);
+        return "redirect:/bug/getBugDetails?bugId="+bugId;
+        //return bugController.getBugDetails(bugId, model);
     }
 
 }
