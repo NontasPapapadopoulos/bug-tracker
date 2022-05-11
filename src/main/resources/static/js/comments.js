@@ -31,3 +31,18 @@ function changeMode() {
 }
 
 
+
+
+var textArea = document.querySelector('textarea');
+
+
+textArea.addEventListener('input' , (e) => {
+    document.querySelector('.letters').innerText = textArea.textLength;
+    if (textArea.textLength > 900){
+        document.querySelector('.counter').classList.add('danger');
+    } else {
+        document.querySelector('.counter').classList.remove('danger');
+    }
+});
+
+

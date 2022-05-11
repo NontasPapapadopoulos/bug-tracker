@@ -1,9 +1,11 @@
 package com.example.bugtracker.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -16,8 +18,9 @@ public class Comment {
     @Column(name="comment_description")
     private String description;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(name="comment_date")
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
 
     public Comment(){
 
@@ -27,7 +30,7 @@ public class Comment {
 
     public Comment(String description, Bug bug) {
         this.description = description;
-        this.dateCreated = java.sql.Date.valueOf(LocalDate.now());
+        this.dateCreated = LocalDateTime.now();
         this.bug = bug;
     }
 
@@ -47,11 +50,11 @@ public class Comment {
         this.description = description;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 

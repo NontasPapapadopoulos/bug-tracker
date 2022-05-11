@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -25,7 +26,7 @@ public class CommentController {
     BugController bugController;
 
     @PostMapping("/addComment")
-    public String addComment(@RequestParam("description") String description, @RequestParam("bugId") Long bugId) {
+    public String addComment(@RequestParam("description") String description, @RequestParam("bugId") Long bugId) throws ParseException {
         commentService.addComment(description, bugId);
 
 

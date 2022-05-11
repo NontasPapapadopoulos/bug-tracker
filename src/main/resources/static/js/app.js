@@ -153,36 +153,4 @@ window.addEventListener("load", () => {
     };
 });
 
-//
-// const bugId = document.querySelector('#bugId').innerHTML;
-// var comment = document.querySelector('.bugText').innerHTML;
-// if (comment === null) {
-//     comment = "";
-// }
-// console.log(bugId+ comment);
-// $(document).ready(
-//     function() {
-//         $('#bugComment').click(function (event) {
-//             ajaxPost();
-//         });
-//
-//         function ajaxPost() {
-//             $.ajax({
-//                 type: "POST",
-//                 url: "/comment/addComment?bugId="+bugId+"?comment="+comment,
-//                 dataType: 'json', // added data type
-//                 success: function (result) {
-//                     if (result != null) {
-//
-//                         console.log('okay')
-//                     } else {
-//                         console.log('fail');
-//                     }
-//                 },
-//                 error: function (e) {
-//                     console.log("ERROR: ", e);
-//                 }
-//             });
-//         }
-//     }
-// )
+

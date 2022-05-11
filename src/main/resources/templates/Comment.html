@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <td>Date of Creation:</td>
-                <td th:text="${bug.date}"></td>
+                <td th:text="${#dates.format(bug.date, 'dd-MM-yyyy')}"></td>
             </tr>
             <tr>
                 <td>Description:</td>
@@ -76,7 +76,6 @@
                 <td>Bug Status:</td>
                 <td th:text="${bug.status}"></td>
             </tr>
-
         </table>
     </div>
 
@@ -103,15 +102,16 @@
 
         </form>
 
+        <div class="counter">
+            <span class="letters">0</span><span>/1000</span>
+        </div>
+
 
 
         <form action="/comment/addComment" method="post"  >
             <input type="hidden" name="bugId" th:field="${bug.bugId}">
 
-            <textarea name="description" id="description" cols="30" rows="10" >
-
-
-            </textarea>
+            <textarea name="description" id="description"  maxlength="1000" ></textarea>
 
             <br>
             <button class="btn btn-submit"  type="submit">Add Comment</button>
@@ -127,7 +127,7 @@
             <div>
                 <table>
                     <tr>
-                        <td th:text="${comment.dateCreated}"></td>
+                        <td th:text="${#temporals.format(comment.dateCreated, 'dd-MM-yyyy HH:mm')}"></td>
                     </tr>
                     <tr>
                         <td th:text="${comment.description}"></td>
