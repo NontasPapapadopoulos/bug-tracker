@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,11 +26,12 @@
           <!-- <label for="password">Password:</label> -->
           <input
             type="password"
-            name="username"
+            name="password"
             id="password"
             placeholder="Password"
             required
           />
+<!--          <input type="hidden" name="_csrf" th:value="${_csrf.token}">-->
 
           <input type="submit" value="Log in" class="btn btn-log" />
         </form>

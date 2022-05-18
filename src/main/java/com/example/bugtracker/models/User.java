@@ -1,18 +1,17 @@
 package com.example.bugtracker.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_seq")
     private  Long userId;
     private String username;
     private String password;
-    private String job;
+    private String role;
     private String email;
 
     public List<Bug> getBugs() {
@@ -28,18 +27,18 @@ public class User {
 
 
 
-    public User(String username, String password, String job, String email) {
+    public User(String username, String password, String role, String email) {
         this.username = username;
         this.password = password;
-        this.job = job;
+        this.role = role;
         this.email = email;
     }
 
-    public User(Long userId, String username, String password, String job, String email) {
+    public User(Long userId, String username, String password, String role, String email) {
         this.userId = userId;
         this.username = username;
         this.password = password;
-        this.job = job;
+        this.role = role;
         this.email = email;
     }
 
@@ -81,12 +80,12 @@ public class User {
     }
 
 
-    public String getJob() {
-        return job;
+    public String getRole() {
+        return role;
     }
 
-    public void setJob(String job) {
-        this.job = job;
+    public void setRole(String job) {
+        this.role = job;
     }
 
     @Override
@@ -94,7 +93,7 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", job='" + job + '\'' +
+                ", job='" + role + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

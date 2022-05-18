@@ -57,7 +57,9 @@
           />
           <br />
 
-          <label for="job"></label><select id="job" name="job" th:field="${user.job}">
+          <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+          <label for="job"></label><select id="job" name="job" th:field="${user.role}">
             <option value="programmer">Programmer</option>
             <option value="ba">BA</option>
             <option value="tester">Tester</option>
