@@ -44,7 +44,8 @@ public class BugController {
 
         bugService.createBug(bug, projectId, userId);
 
-        return logInController.displayMainPage(model);
+        return "redirect:/main";
+        //return logInController.displayMainPage(model);
     }
 
     @GetMapping("/getBugsByProjectName")
@@ -72,8 +73,9 @@ public class BugController {
 
         bugService.updateBugStatus(bugId, status);
 
-
-        return getBugDetails(bugId, model);
+        //return "redirect:/bug/getBugDetails?bugId="+bugId;
+        return "redirect:/main";
+       // return getBugDetails(bugId, model);
     }
 
 

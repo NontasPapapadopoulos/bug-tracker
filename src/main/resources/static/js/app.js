@@ -5,7 +5,7 @@ const selectedProject = document.querySelector('.current-project h4');
 
 if (projects !== null || projects.length >0) {
     const firstProject = projects.item(0);
-    if (firstProject.innerHTML !== null || firstProject.innerHTML !== "") {
+    if (firstProject !== null ) {
         selectedProject.innerHTML = firstProject.innerHTML;
     }
 

@@ -4,7 +4,7 @@ import com.example.bugtracker.models.User;
 import com.example.bugtracker.repository.UserRepository;
 import com.example.bugtracker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +23,8 @@ public class RegisterController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/")
     public String displayRegister(Model model) {
@@ -38,7 +38,7 @@ public class RegisterController {
     @PostMapping("/saveUser")
     public String createEmployee(User user, Model model) {
 
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+       // user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         if(!userService.userExists(user)) {
             userRepo.save(user);
